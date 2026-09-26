@@ -1,6 +1,6 @@
 import { fetchColorFromText } from "./api";
 import { getAccessibleForegroundColor } from "./color";
-import { getTextToColorEndpoint } from "./config";
+import { createTextToColorEndpoint } from "./config";
 import { getConverterElements } from "./dom";
 import { renderConverterState } from "./state";
 
@@ -9,7 +9,10 @@ const REQUEST_ERROR_MESSAGE = "色を取得できませんでした。もう一�
 const AUTOMATIC_SUBMISSION_DELAY_MILLISECONDS = 1000;
 
 const elements = getConverterElements();
-const textToColorEndpoint = getTextToColorEndpoint(window.location.pathname);
+const textToColorEndpoint = createTextToColorEndpoint(
+  import.meta.env.VITE_API_BASE_URL ?? "",
+  window.location.pathname,
+);
 const automaticSubmission = {
   timeoutIdentifier: undefined as number | undefined,
 };
