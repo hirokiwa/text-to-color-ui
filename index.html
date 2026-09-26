@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#eee9df" />
+    <meta name="description" content="入力した言葉のイメージを色に変換します。" />
+    <title>text to color</title>
+    <link rel="stylesheet" href="/src/styles/base.css" />
+    <link rel="stylesheet" href="/src/styles/text-to-color.css" />
+  </head>
+  <body class="page">
+    <main class="color-converter">
+      <form class="color-converter__form" novalidate>
+        <label class="color-converter__label" for="color-text">text to color</label>
+        <textarea
+          class="color-converter__input"
+          id="color-text"
+          name="text"
+          rows="5"
+          maxlength="500"
+          placeholder="言葉を入力してください"
+          required
+        ></textarea>
+        <button class="color-converter__submit" type="submit">
+          <span class="color-converter__submit-label">色にする</span>
+          <span class="color-converter__submit-arrow" aria-hidden="true">→</span>
+        </button>
+        <output class="color-converter__result" for="color-text" aria-live="polite"></output>
+        <p class="color-converter__message" role="status" aria-live="polite"></p>
+      </form>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

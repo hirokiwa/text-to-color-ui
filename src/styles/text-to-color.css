@@ -1,0 +1,162 @@
+:root {
+  --initial-page-color: #eee9df;
+  --initial-foreground-color: #191916;
+  --page-color: var(--initial-page-color);
+  --foreground-color: var(--initial-foreground-color);
+  --surface-color: color-mix(in srgb, var(--page-color), transparent 10%);
+  --muted-foreground-color: color-mix(
+    in srgb,
+    var(--foreground-color),
+    transparent 35%
+  );
+  --border-color: color-mix(
+    in srgb,
+    var(--foreground-color),
+    transparent 62%
+  );
+  --transition-duration: 720ms;
+}
+
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  background-color: var(--page-color);
+  color: var(--foreground-color);
+  transition:
+    background-color var(--transition-duration) cubic-bezier(0.22, 1, 0.36, 1),
+    color var(--transition-duration) ease;
+}
+
+.color-converter {
+  display: flex;
+  width: min(38rem, calc(100% - 3rem));
+  min-height: 31rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.color-converter__form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.color-converter__label {
+  align-self: flex-start;
+  font-size: clamp(0.75rem, 1.6vw, 0.875rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.color-converter__input {
+  width: 100%;
+  min-height: 12rem;
+  resize: vertical;
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  outline: 0;
+  background-color: var(--surface-color);
+  box-shadow: 0 1.5rem 4rem color-mix(in srgb, #000000, transparent 88%);
+  caret-color: var(--foreground-color);
+  font-size: clamp(1.25rem, 4vw, 2rem);
+  font-weight: 400;
+  line-height: 1.55;
+  padding: 1.5rem;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color var(--transition-duration) ease;
+}
+
+.color-converter__input::placeholder {
+  color: var(--muted-foreground-color);
+}
+
+.color-converter__input:focus-visible {
+  border-color: var(--foreground-color);
+  box-shadow:
+    0 0 0 0.2rem color-mix(in srgb, var(--foreground-color), transparent 78%),
+    0 1.5rem 4rem color-mix(in srgb, #000000, transparent 88%);
+}
+
+.color-converter__submit {
+  display: flex;
+  min-height: 3.5rem;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 100vmax;
+  background-color: var(--foreground-color);
+  color: var(--page-color);
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0 1.5rem;
+  transition:
+    opacity 180ms ease,
+    scale 180ms ease,
+    background-color var(--transition-duration) ease,
+    color var(--transition-duration) ease;
+}
+
+.color-converter__submit:focus-visible {
+  outline: 0.2rem solid var(--foreground-color);
+  outline-offset: 0.2rem;
+}
+
+.color-converter__submit:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.color-converter__submit-arrow {
+  font-size: 1.35rem;
+}
+
+.color-converter__result {
+  min-height: 2.75rem;
+  align-self: center;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: clamp(1.75rem, 6vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.color-converter__message {
+  min-height: 1.5rem;
+  color: inherit;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (any-hover: hover) {
+  .color-converter__submit:not(:disabled):hover {
+    opacity: 0.82;
+    scale: 0.99;
+  }
+}
+
+@media (width <= 40rem) {
+  .color-converter {
+    width: calc(100% - 2rem);
+  }
+
+  .color-converter__input {
+    min-height: 10rem;
+    padding: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page,
+  .color-converter__input,
+  .color-converter__submit {
+    transition-duration: 0.01ms;
+  }
+}
