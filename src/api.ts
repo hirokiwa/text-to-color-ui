@@ -1,4 +1,3 @@
-import { TEXT_TO_COLOR_ENDPOINT } from "./config";
 import { createColorResult } from "./color";
 
 const createRequestOptions = (text: string): RequestInit => ({
@@ -16,11 +15,8 @@ const parseResponse = async (response: Response) => {
     : Promise.reject(new Error("色を取得できませんでした。"));
 };
 
-export const fetchColorFromText = async (text: string) => {
-  const response = await fetch(
-    TEXT_TO_COLOR_ENDPOINT,
-    createRequestOptions(text),
-  );
+export const fetchColorFromText = async (text: string, endpoint: string) => {
+  const response = await fetch(endpoint, createRequestOptions(text));
 
   return parseResponse(response);
 };
