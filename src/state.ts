@@ -7,9 +7,6 @@ const getMessage = (state: ConverterState) =>
 const getResult = (state: ConverterState) =>
   state.status === "success" ? state.color : "";
 
-const getSubmitLabel = (state: ConverterState) =>
-  state.status === "loading" ? "色を探しています" : "色にする";
-
 const applyColorTheme = (
   elements: ConverterElements,
   state: ConverterState,
@@ -32,10 +29,8 @@ export const renderConverterState = (
 ) => {
   const isLoading = state.status === "loading";
 
-  elements.submit.disabled = isLoading;
   elements.input.readOnly = isLoading;
   elements.form.setAttribute("aria-busy", `${isLoading}`);
-  elements.submitLabel.textContent = getSubmitLabel(state);
   elements.result.textContent = getResult(state);
   elements.message.textContent = getMessage(state);
   applyColorTheme(elements, state);

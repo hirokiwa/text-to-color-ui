@@ -22,12 +22,7 @@ body {
   margin: 0;
 }
 
-button,
 textarea {
   color: inherit;
   font: inherit;
-}
-
-button {
-  border: 0;
 }
