@@ -1,5 +1,5 @@
 const TEXT_TO_COLOR_ENDPOINTS = {
-  default: "/v1/text-to-color/",
+  default: "/v1/text-to-color",
   mock: "/v1/text-to-color/mock",
 } as const;
 
